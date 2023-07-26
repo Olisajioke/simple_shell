@@ -8,22 +8,10 @@
  */
 void _printenv(char **envp)
 {
-	if (isatty(0))
-	{
-		while (envp)
+		while (*envp != NULL)
 		{
 			_printstring(*envp);
 			_printstring("\n");
 			envp++;
 		}
-	}
-	else
-	{
-		while (*envp)
-		{
-			_printstring(*envp);
-			_printstring("\n");
-			envp++;
-		}
-	}
 }

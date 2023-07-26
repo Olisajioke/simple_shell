@@ -13,11 +13,10 @@
 
 int prompt(void);
 int _putchar(char c);
-void interactive_mode(char **envp);
-void non_interactive(char **envp);
+int interactive_mode(char **envp);
 char _printstring(char *str);
-char *read_command(void);
-void execute_command(char *input);
+void check_spaces(char *input, ssize_t read_line);
+int execute_command(char *input);
 int custom_strcmp(const char *str1, const char *str2);
 void _printenv(char **envp);
 
