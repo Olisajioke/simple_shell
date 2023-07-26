@@ -14,7 +14,7 @@ int main(__attribute((unused)) int ac,
 	if (isatty(0))
 		interactive_mode(envp);
 	else
-		non_interactive_mode(envp);
+		non_interactive(envp);
 	return (0);
 }
 

@@ -1,13 +1,11 @@
 #include "shell.h"
 
 /*
- *non_interactive_mode- handles the non interractive part of the code.
- *@envp: the enviroment.
- *Return: 0.
+ * non_interactive - handles the non interractive part
+ * @envp: the enviroment.
+ * Return: 0.
  */
-
-
-void non_interactive_mode(char **envp)
+void non_interactive(char **envp)
 {
 	char *input = NULL;
 	size_t len = 0;
@@ -15,8 +13,8 @@ void non_interactive_mode(char **envp)
 
 	while ((read_line = getline(&input, &len, stdin)) != -1)
 	{
-	if (input[read - 1] == '\n')
-	input[read - 1] = '\0';
+	if (input[read_line - 1] == '\n')
+	input[read_line - 1] = '\0';
 
 
 	if (*input)
@@ -32,9 +30,8 @@ void non_interactive_mode(char **envp)
 	else
 	{
 		execute_command(input);
-		exit(EXIT_SUCCESS);
 	}
 	}
 	}
-	fre(input);
+	free(input);
 }
