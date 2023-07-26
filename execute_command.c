@@ -6,7 +6,6 @@
  * Return: 0 if successful,
  * -1 if error is encountered
  */
-
 void execute_command(char *input)
 {
 	const char delimiters[] = " ";
@@ -20,6 +19,8 @@ void execute_command(char *input)
 	{
 	new_process[i++] = token;
 	token = strtok(NULL, delimiters);
+	if (custom_strcmp(new_process[0], "ls"))
+		new_process[0] = "/bin/ls";
 	}
 	new_process[i] = NULL;
 	if (stat(new_process[0], &st) == 0 && (st.st_mode & S_IXUSR))
@@ -40,12 +41,8 @@ void execute_command(char *input)
 	}
 	}
 	else
-	{
-	wait(NULL);
-	}
+		wait(NULL);
 	}
 	else
-	{
-	perror(new_process[0]);
-	}
+		perror(new_process[0]);
 }

@@ -1,6 +1,6 @@
 #include "shell.h"
 
-/*
+/**
  * non_interactive - handles the non interractive part
  * @envp: the enviroment.
  * Return: 0.
@@ -13,25 +13,18 @@ void non_interactive(char **envp)
 
 	while ((read_line = getline(&input, &len, stdin)) != -1)
 	{
-	if (input[read_line - 1] == '\n')
-	input[read_line - 1] = '\0';
-
-
-	if (*input)
-	{
-	if (custom_strcmp(input, "exit"))
-	{
-		break;
-		}
-		if (custom_strcmp(input, "env"))
+		if (input[read_line - 1] == '\n')
 		{
-		_printenv(envp);
+			input[read_line - 1] = '\0';
 		}
-	else
-	{
-		execute_command(input);
-	}
-	}
+		if (*input)
+		{
+			if (custom_strcmp(input, "exit"))
+				break;
+			if (custom_strcmp(input, "env"))
+				_printenv(envp);
+			execute_command(input);
+		}
 	}
 	free(input);
 }
