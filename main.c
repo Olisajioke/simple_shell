@@ -11,9 +11,10 @@ int main(__attribute((unused)) int ac,
 		__attribute((unused)) char **arvg,
 		__attribute((unused)) char **envp)
 {
-	int status = 0;
-
-	status = interactive_mode(envp);
-	return (status);
+	if (isatty(0))
+		interactive_mode(envp);
+		else
+		non_interactive(envp);
+		return (0);
 }
 

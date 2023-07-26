@@ -6,7 +6,7 @@
  * Return: 0 if successful,
  * -1 if error is encountered
  */
-int execute_command(char *input)
+void execute_command(char *input)
 {
 	const char delimiters[] = " ";
 	char *new_process[BUFFER_SIZE] = {0};
@@ -41,9 +41,10 @@ int execute_command(char *input)
 	}
 	}
 	else
-		wait(NULL);
+	{
+	wait(NULL);
+	}
 	}
 	else
-		perror(new_process[0]);
-	return (0);
+	perror(new_process[0]);
 }
