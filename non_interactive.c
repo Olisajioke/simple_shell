@@ -1,6 +1,6 @@
 #include "shell.h"
 
-/*
+/**
  * non_interactive - handles the non interractive part
  * @envp: the enviroment.
  * Return: 0.
