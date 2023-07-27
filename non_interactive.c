@@ -8,30 +8,28 @@
 void non_interactive(char **envp)
 {
 	char *input = NULL;
-	size_t len = 0;
 	ssize_t read_line;
 
-	while ((read_line = getline(&input, &len, stdin)) != -1)
+	input = (char *)malloc(sizeof(char) * BUFFER_SIZE);
+	if (input == NULL)
 	{
-	if (input[read_line - 1] == '\n')
-	input[read_line - 1] = '\0';
+		_printstring("malloc");
+	}
 
-
-	if (*input)
+	while ((read_line = _getline(stdin, input, BUFFER_SIZE, '\n')) != -1)
 	{
-	if (custom_strcmp(input, "exit"))
-	{
-		break;
-		}
-		if (custom_strcmp(input, "env"))
+		if (input[read_line - 1] == '\n')
 		{
-		_printenv(envp);
+			input[read_line - 1] = '\0';
 		}
-	else
-	{
-		execute_command(input);
-	}
-	}
+		if (*input)
+		{
+			if (custom_strcmp(input, "exit"))
+				break;
+			if (custom_strcmp(input, "env"))
+				_printenv(envp);
+			execute_command(input);
+		}
 	}
 	free(input);
 }

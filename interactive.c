@@ -9,15 +9,21 @@
 void interactive_mode(char **envp)
 {
 	char *input = NULL;
-	size_t len = 0;
 	ssize_t read_line;
 
+	input = (char *)malloc(sizeof(char) * BUFFER_SIZE);
+	if (input == NULL)
+	{
+		_printstring("malloc");
+	}
 	while (1)
 	{
 		prompt();
-		read_line = getline(&input, &len, stdin);
+		read_line = _getline(stdin, input, BUFFER_SIZE, '\n');
 		if (input[read_line - 1] == '\n')
+		{
 			input[read_line - 1] = '\0';
+		}
 		if (custom_strcmp(input, "exit"))
 		{
 			free(input);
@@ -34,7 +40,9 @@ void interactive_mode(char **envp)
 			continue;
 		}
 		else
+		{
 			execute_command(input);
+		}
 	}
 	free(input);
 }
