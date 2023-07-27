@@ -16,8 +16,14 @@ void interactive_mode(char **envp)
 	{
 		prompt();
 		read_line = getline(&input, &len, stdin);
+		if (read_line == -1)
+		{
+			free(input);
+			break;
+		}
 		if (input[read_line - 1] == '\n')
 			input[read_line - 1] = '\0';
+		check_spaces(input, read_line);
 		if (custom_strcmp(input, "exit"))
 		{
 			free(input);
@@ -26,15 +32,13 @@ void interactive_mode(char **envp)
 		if (custom_strcmp(input, "env"))
 		{
 			_printenv(envp);
-			free(input);
 		}
 		if (!(*input))
 		{
-			free(input);
 			continue;
 		}
 		else
-			execute_command(input);
+			execute_command(input, envp);
 	}
 	free(input);
 }

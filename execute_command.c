@@ -3,14 +3,15 @@
 /**
  * execute_command - executes the inpute read from the user
  * @input: standard input from user.
+ * @envp: environment variables
  * Return: 0 if successful,
  * -1 if error is encountered
  */
-void execute_command(char *input)
+void execute_command(char *input, char **envp)
 {
 	const char delimiters[] = " ";
 	char *new_process[BUFFER_SIZE] = {0};
-	char *new_environ[] = {NULL};
+	/*char *new_environ[] = {NULL};*/
 	struct stat st;
 	int i = 0;
 	char *token = strtok(input, delimiters);
@@ -34,7 +35,7 @@ void execute_command(char *input)
 	}
 	else if (pid == 0)
 	{
-	if (execve(new_process[0], new_process, new_environ) == -1)
+	if (execve(new_process[0], new_process, envp) == -1)
 	{
 	perror(new_process[0]);
 	exit(EXIT_FAILURE);

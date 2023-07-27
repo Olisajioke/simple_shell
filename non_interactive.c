@@ -29,7 +29,7 @@ void non_interactive(char **envp)
 		}
 	else
 	{
-		execute_command(input);
+		execute_command(input, envp);
 	}
 	}
 	}
