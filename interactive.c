@@ -23,7 +23,7 @@ void interactive_mode(char **envp)
 		}
 		if (input[read_line - 1] == '\n')
 			input[read_line - 1] = '\0';
-		check_spaces(input, read_line);
+		/*check_spaces(input, read_line);*/
 		if (custom_strcmp(input, "exit"))
 		{
 			free(input);
@@ -40,5 +40,4 @@ void interactive_mode(char **envp)
 		else
 			execute_command(input, envp);
 	}
-	free(input);
 }
