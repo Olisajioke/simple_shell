@@ -28,7 +28,6 @@ void non_interactive(char **envp)
 				break;
 			if (custom_strcmp(input, "env"))
 				_printenv(envp);
-			execute_command(input);
 		}
 	else
 	{
