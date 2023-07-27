@@ -30,6 +30,10 @@ void non_interactive(char **envp)
 				_printenv(envp);
 			execute_command(input);
 		}
+	else
+	{
+		execute_command(input, envp);
+	}
 	}
 	free(input);
 }

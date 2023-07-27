@@ -20,6 +20,11 @@ void interactive_mode(char **envp)
 	{
 		prompt();
 		read_line = _getline(stdin, input, BUFFER_SIZE, '\n');
+		if (read_line == -1)
+		{
+			free(input);
+			break;
+		}
 		if (input[read_line - 1] == '\n')
 		{
 			input[read_line - 1] = '\0';
@@ -32,17 +37,14 @@ void interactive_mode(char **envp)
 		if (custom_strcmp(input, "env"))
 		{
 			_printenv(envp);
-			free(input);
 		}
 		if (!(*input))
 		{
-			free(input);
 			continue;
 		}
 		else
 		{
-			execute_command(input);
+			execute_command(input, envp);
 		}
-	}
-	free(input);
+}
 }
