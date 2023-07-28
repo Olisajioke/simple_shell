@@ -8,15 +8,10 @@
 void non_interactive(char **envp)
 {
 	char *input = NULL;
+	size_t len = 0;
 	ssize_t read_line;
 
-	input = (char *)malloc(sizeof(char) * BUFFER_SIZE);
-	if (input == NULL)
-	{
-		_printstring("malloc");
-	}
-
-	while ((read_line = _getline(stdin, input, BUFFER_SIZE, '\n')) != -1)
+	while ((read_line = getline(&input, &len, stdin)) != -1)
 	{
 		if (input[read_line - 1] == '\n')
 		{

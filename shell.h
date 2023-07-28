@@ -20,6 +20,5 @@ char *read_command(void);
 void execute_command(char *input, char **envp);
 int custom_strcmp(const char *str1, const char *str2);
 void _printenv(char **envp);
-int _getline(FILE *str_input, char *str_output, int size, char delimiter);
 
 #endif /*SHELL_H*/
