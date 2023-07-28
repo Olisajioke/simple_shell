@@ -17,17 +17,15 @@ void non_interactive(char **envp)
 		{
 			input[read_line - 1] = '\0';
 		}
-		if (!(*input))
+		if (*input)
 		{
 			if (custom_strcmp(input, "exit"))
 				break;
 			if (custom_strcmp(input, "env"))
 				_printenv(envp);
+			else
+				execute_command(input, envp);
 		}
-	else
-	{
-		execute_command(input, envp);
-	}
 	}
 	free(input);
 }
